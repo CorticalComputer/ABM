@@ -83,8 +83,8 @@ grid([],MPIds,XRange,YRange,RoundIndex)->
 		case get({X,Y}) of
 			undefined ->
 				Local_State = [get({TX,TY})|| TX <- [X-1,X,X+1],TY<-[Y-1,Y,Y+1]],
-				TotSwimmers = lists:sum([1 || {_APId,swimmer} <- Local_State--[{self(),swimmer}]]),
-				TotSurfers = lists:sum([1 || {_APId,surfer} <- Local_State--[{self(),surfer}]]),
+				TotSwimmers = lists:sum([1 || {_APId,swimmer} <- Local_State]),
+				TotSurfers = lists:sum([1 || {_APId,surfer} <- Local_State]),
 				if 
 					(TotSurfers > TotSwimmers) -> gather_stats(X+1,Y,XRange,YRange,AccA+1,AccB);
 					(TotSurfers < TotSwimmers) -> gather_stats(X+1,Y,XRange,YRange,AccA,AccB+1);
